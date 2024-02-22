@@ -1,6 +1,5 @@
 package com.nhnacademy.project.account.controller;
 
-import com.nhnacademy.project.account.domain.ResponseMessage;
 import com.nhnacademy.project.account.domain.UserDto;
 import com.nhnacademy.project.account.domain.UserRegisterDto;
 import com.nhnacademy.project.account.service.UserService;
@@ -41,7 +40,7 @@ public class UserRestController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseMessage> createUser(@Valid @RequestBody UserRegisterDto userRegisterDto, BindingResult bindingResult) {
+    public ResponseEntity<Void> createUser(@Valid @RequestBody UserRegisterDto userRegisterDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String message=bindingResult.getAllErrors()
                     .stream()
@@ -51,18 +50,18 @@ public class UserRestController {
                     .collect(Collectors.joining(" | "));
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new ResponseMessage(message));
+                    .build();
         }
 
 
         if (Objects.isNull(userService.createUser(userRegisterDto))) {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
-                    .body(new ResponseMessage("이미 존재하는 회원입니다."));
+                    .build();
         }
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(new ResponseMessage("회원가입 성공"));
+                .build();
     }
 
 }
