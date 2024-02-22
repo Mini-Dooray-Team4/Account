@@ -18,3 +18,13 @@ Content-Type: application/json
   "userEmail": "nhn@nhn.com",
   "userPassword": "number2"
 }
+###
+POST http://localhost:9090/users
+Content-Type: application/json
+
+{
+  "userId": "test",
+  "userName": "테스트계정",
+  "userEmail": "nhn@nhn.com",
+  "userPassword": "123"
+}
