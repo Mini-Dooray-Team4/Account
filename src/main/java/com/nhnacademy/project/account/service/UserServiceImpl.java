@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
+
     public UserDto getUser(String userId) {
         return userRepository.findByUserId(userId);
     }

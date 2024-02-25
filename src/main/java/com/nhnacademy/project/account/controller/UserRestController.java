@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/users")
 public class UserRestController {
 
